@@ -5,7 +5,9 @@ const {
     updateEmail,
     updateAdmin
 } = require('../../../controller/controller');
+
 const adminUploads = require('../../../middleware/adminMulter');
+
 const adminRoutes=express.Router();
 
 adminRoutes.post('/login',adminLogin)

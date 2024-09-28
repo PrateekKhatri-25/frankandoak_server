@@ -5,6 +5,7 @@ const sizeRouter = require('./route/admin/size/size');
 const colorRouter = require('./route/admin/color/color');
 const productCategoryRoute = require('./route/admin/product-category/productCategory');
 const productRouter = require('./route/admin/product/product');
+const userRouter = require('./route/website/user/user');
 
 const allRoutes=express.Router();
 
@@ -22,7 +23,7 @@ adminRouter.use('/product-category',productCategoryRoute);
 adminRouter.use('/product',productRouter)
 
 //websiste route
-
+websiteRouter.use('/user',userRouter);
 
 allRoutes.use('/frankandOak-services',websiteRouter);
 allRoutes.use('/admin-panel',adminRouter)
