@@ -6,6 +6,8 @@ const colorRouter = require('./route/admin/color/color');
 const productCategoryRoute = require('./route/admin/product-category/productCategory');
 const productRouter = require('./route/admin/product/product');
 const userRouter = require('./route/website/user/user');
+const wishRouter = require('./route/website/wishlist/wishlist');
+const cartRouter = require('./route/website/cart/cart');
 
 const allRoutes=express.Router();
 
@@ -24,6 +26,9 @@ adminRouter.use('/product',productRouter)
 
 //websiste route
 websiteRouter.use('/user',userRouter);
+websiteRouter.use('/wishlist',wishRouter);
+websiteRouter.use('/cart',cartRouter)
+
 
 allRoutes.use('/frankandOak-services',websiteRouter);
 allRoutes.use('/admin-panel',adminRouter)

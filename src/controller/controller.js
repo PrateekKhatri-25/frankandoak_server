@@ -60,12 +60,18 @@ const {
     updateSize,
     deleteSize
 } = require("./admin-panel/size/sizeController");
+const { AddToCart, ViewCart } = require("./website/cart/cartController");
 
 //user controller
 const {
     registerUser,
     loginUser
 } = require("./website/users/userController");
+
+const {
+    AddToWishlist,
+    viewWishlist
+} = require("./website/wishlist/wishlistControllers");
 
 module.exports = {
     adminLogin,
@@ -105,5 +111,9 @@ module.exports = {
     readProductById,
     updateProduct,
     registerUser,
-    loginUser
+    loginUser,
+    AddToWishlist,
+    viewWishlist,
+    AddToCart,
+    ViewCart
 }

@@ -83,7 +83,8 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, password} = req.body;
+        // console.log();
         // console.log(auth);
 
         const user = await userModel.findOne({ email });
@@ -134,7 +135,13 @@ const loginUser = async (req, res) => {
             jwt.sign({ email: user.email, _id: user._id }, process.env.JWT_KEY, (error, token) => {
                 if (error) return res.status(203).json({ message: 'internal server error' });
 
-                res.status(200).json({ message: 'login successfull', auth: token })
+            const response={
+                f_name:user.f_name,
+                email,
+                id:user.id,
+            }
+
+                res.status(200).json({ message: 'login successfull', data:response, auth: token })
             })
 
             // res.status(200).json({ message: 'login successfull' })
@@ -146,32 +153,6 @@ const loginUser = async (req, res) => {
         res.status(500).json({ message: 'internal server error' })
     }
 };
-
-//     try {
-//         req.status(200).json({ message: 'success' })
-//         // const { email, password } = req.body;
-
-//         // const user = await userModel.findOne({ email: email });
-
-//         // if (!user) {
-//         //     return res.status(404).json({ message: 'user not found' })
-//         // }
-
-//         // bcrypt.compare(password, user.password, (error, result) => {
-
-//         //     if (error) return res.status(203).json({ message: 'something went wrong' });
-
-//         //     if (!result) {
-//         //         return res.status(404).json({ message: 'password not match' })
-//         //     }
-
-//         //     res.status(200).json({ message: 'login successfully' })
-//         // });
-//     }
-//     catch (error) {
-//         res.status(500).json({ message: 'internal server error' })
-//     }
-// };
 
 module.exports = {
     registerUser,
