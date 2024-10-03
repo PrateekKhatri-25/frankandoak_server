@@ -70,6 +70,10 @@ const {
     DeleteCartItem
 } = require("./website/cart/cartController");
 
+const {
+    purchase
+} = require("./website/payment-gateway/paymentController");
+
 //user controller
 const {
     registerUser,
@@ -130,5 +134,6 @@ module.exports = {
     deleteWishData,
     AddToCart,
     ViewCart,
-    DeleteCartItem
+    DeleteCartItem,
+    purchase
 }

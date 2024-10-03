@@ -8,6 +8,7 @@ const productRouter = require('./route/admin/product/product');
 const userRouter = require('./route/website/user/user');
 const wishRouter = require('./route/website/wishlist/wishlist');
 const cartRouter = require('./route/website/cart/cart');
+const paymentRouter = require('./route/website/payment/payment');
 
 const allRoutes=express.Router();
 
@@ -27,11 +28,13 @@ adminRouter.use('/product',productRouter)
 //websiste route
 websiteRouter.use('/user',userRouter);
 websiteRouter.use('/wishlist',wishRouter);
-websiteRouter.use('/cart',cartRouter)
+websiteRouter.use('/cart',cartRouter);
+websiteRouter.use('/payment',paymentRouter)
 
 
 allRoutes.use('/frankandOak-services',websiteRouter);
-allRoutes.use('/admin-panel',adminRouter)
+allRoutes.use('/admin-panel',adminRouter);
+
 module.exports={
     allRoutes
 }
