@@ -80,22 +80,36 @@ const updateSize = async (req, res) => {
     }
 }
 
-const deleteSize=async (req,res)=>{
-    try{
-        const response=await SizeModal.deleteOne(req.params)
-        res.status(200).json({message:'successfully deleted',data:response})
+const deleteSize = async (req, res) => {
+    try {
+        const response = await SizeModal.deleteOne(req.params)
+        res.status(200).json({ message: 'successfully deleted', data: response })
     }
-    catch(error){
-        res.status(500).json({message:'internal server error'})
+    catch (error) {
+        res.status(500).json({ message: 'internal server error' })
         console.log(error);
     }
-}
+};
 
+const activeSize = async (req, res) => {
+    try {
+        const response = await SizeModal.find({ status: true });
+
+        if (response.length == 0) return res.status(404).json({ message: 'no active sizes' });
+
+        res.status(200).json({ message: 'success', data: response });
+    }
+    catch (error) {
+        res.status(500).json({ message: 'internal server error' })
+        console.log(error);
+    }
+};
 module.exports = {
     insertSize,
     readSize,
     updateSizeStatus,
     readSizeById,
     updateSize,
-    deleteSize
+    deleteSize,
+    activeSize
 }

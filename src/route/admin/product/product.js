@@ -1,5 +1,5 @@
 const express = require('express');
-const { addProduct, readProduct, deleteProduct, updateProductStatus, readProductById, updateProduct } = require('../../../controller/controller');
+const { addProduct, readProduct, deleteProduct, updateProductStatus, readProductById, updateProduct, activeProducts, searchProduct } = require('../../../controller/controller');
 const multer = require('multer');
 const storage = require('../../../middleware/multer');
 
@@ -16,5 +16,7 @@ productRouter.delete('/delete-product/:_id',deleteProduct);
 productRouter.put('/update-product-status/:_id',updateProductStatus);
 productRouter.get('/read-product-by-id/:_id',readProductById);
 productRouter.put('/update-product/:_id',uploads,updateProduct)
+productRouter.get('/active-product',activeProducts);
+productRouter.get('/search-product/:key',searchProduct)
 
 module.exports = productRouter;

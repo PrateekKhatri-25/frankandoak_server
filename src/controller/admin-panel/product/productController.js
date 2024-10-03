@@ -111,7 +111,7 @@ const updateProduct = async (req, res) => {
 
     const preData = await productModel.findById(req.params._id);
 
-    if (!preData) return res.status(400).json({ message: 'data not found'});
+    if (!preData) return res.status(400).json({ message: 'data not found' });
 
     // console.log(preData);
 
@@ -171,11 +171,71 @@ const updateProduct = async (req, res) => {
     }
 };
 
+const activeProducts = async (req, res) => {
+    try {
+        const response = await productModel.find({ status: true })
+            .populate('size')
+            .populate('color')
+            .populate({
+                path: 'category',
+                populate: {
+                    path: 'parent_category',
+                    model: 'parent_categories'
+                }
+            });
+
+        if (response.length === 0) return res.status(404).json({ message: 'no active products' });
+
+        const file_path = `${req.protocol}://${req.get('host')}/frankandoak-files/products/`;
+
+        res.status(200).json({ message: 'sucess', data: response, file_path: file_path });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'internal server error' })
+    }
+
+};
+
+const searchProduct = async (req, res) => {
+    try {
+        if (req.params.key) {
+            const response = await productModel.find({
+                $or: [
+                    { name: { $regex: new RegExp(req.params.key) } },
+                    { description: { $regex: new RegExp(req.params.key) } },
+                    { brand: { $regex: new RegExp(req.params.key) } }
+                ]
+            })
+            .populate('color')
+            .populate('size')
+            .populate({
+                path:'category',
+                populate:{
+                    path: 'parent_category',
+                    model: 'parent_categories'
+                }
+            })
+            ;
+
+            const file_path = `${req.protocol}://${req.get('host')}/frankandoak-files/products/`;
+
+            res.status(200).json({ message: 'success', data: response, file_path: file_path });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'internal server error' })
+    }
+};
+
 module.exports = {
     addProduct,
     readProduct,
     deleteProduct,
     updateProductStatus,
     readProductById,
-    updateProduct
+    updateProduct,
+    activeProducts,
+    searchProduct
 };

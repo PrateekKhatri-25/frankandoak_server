@@ -1,19 +1,19 @@
 const mongoose=require('mongoose')
 
 const Cart = new mongoose.Schema({
-    user:{
+    user_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'users'
     },
-    product:{
+    product_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'product'
     },
-    color:{
+    color_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'color'
     },
-    size:{
+    size_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'size'
     },

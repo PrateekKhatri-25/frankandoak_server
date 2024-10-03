@@ -14,7 +14,8 @@ const {
     deleteColor,
     updateColorStatus,
     updateColor,
-    readColorById
+    readColorById,
+    activeColors
 } = require("./admin-panel/color/colorController");
 
 //parent category controller
@@ -47,7 +48,9 @@ const {
     deleteProduct,
     updateProductStatus,
     readProductById,
-    updateProduct
+    updateProduct,
+    activeProducts,
+    searchProduct
 } = require("./admin-panel/product/productController");
 
 
@@ -58,9 +61,14 @@ const {
     updateSizeStatus,
     readSizeById,
     updateSize,
-    deleteSize
+    deleteSize,
+    activeSize,
 } = require("./admin-panel/size/sizeController");
-const { AddToCart, ViewCart } = require("./website/cart/cartController");
+const {
+    AddToCart,
+    ViewCart,
+    DeleteCartItem
+} = require("./website/cart/cartController");
 
 //user controller
 const {
@@ -70,7 +78,8 @@ const {
 
 const {
     AddToWishlist,
-    viewWishlist
+    viewWishlist,
+    deleteWishData
 } = require("./website/wishlist/wishlistControllers");
 
 module.exports = {
@@ -90,12 +99,14 @@ module.exports = {
     updateSize,
     deleteParentCategory,
     deleteSize,
+    activeSize,
     addColor,
     readColor,
     updateColorStatus,
     deleteColor,
     updateColor,
     readColorById,
+    activeColors,
     activeParentCategories,
     insertProductCategory,
     readProductCategory,
@@ -107,6 +118,8 @@ module.exports = {
     addProduct,
     readProduct,
     deleteProduct,
+    activeProducts,
+    searchProduct,
     updateProductStatus,
     readProductById,
     updateProduct,
@@ -114,6 +127,8 @@ module.exports = {
     loginUser,
     AddToWishlist,
     viewWishlist,
+    deleteWishData,
     AddToCart,
-    ViewCart
+    ViewCart,
+    DeleteCartItem
 }

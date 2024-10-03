@@ -92,11 +92,26 @@ const updateColor = async (req, res) => {
     }
 };
 
+const activeColors=async(req,res)=>{
+    try{
+        const response=await colorModal.find({status:true});
+
+        if(response.length===0) return res.status(404).json({message:'no active color'});
+
+        res.status(200).json({message:'success', data:response});
+    }
+    catch(error){
+        res.status(500).json({message:'internal server error'})
+        console.log(error);
+    }
+};
+
 module.exports = {
     addColor,
     readColor,
     deleteColor,
     updateColorStatus,
     updateColor,
-    readColorById
+    readColorById,
+    activeColors
 }
